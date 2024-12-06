@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: TFintechGradProject
+  datasource:
+    url: jdbc:postgresql://localhost:5432/testdb
+    username: postgres
+    password: pass
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true
+
+application:
+  security:
+    jwt:
+      ttlRememberMe: 2592000000
+      ttl: 600000
+      secretKey: DSHTzrEshdcuxb7J+fBZqsHVenAVCKyt72laTZxEfFk=
+
+
+
+yandexMapsApi:
+  apiKey: 7ffff1e0-b2fc-4cfa-ac3c-18a27f1c71b5
+  url: https://geocode-maps.yandex.ru/1.x/

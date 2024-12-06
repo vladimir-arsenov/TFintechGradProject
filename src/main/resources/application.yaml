@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: TFintechGradProject
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tfintech_grad_project
+    username: postgres
+    password: pass
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  flyway:
+    enabled: true
+
+logging:
+  level:
+    org:
+      springframework:
+        security: TRACE
+resilience4j:
+  ratelimiter:
+    instances:
+      yandexMapsApi:
+        limit-for-period: 5
+        limit-refresh-period: 1s
+        timeout-duration: 0s
+  circuitbreaker:
+    instances:
+      yandexMapsApi:
+        minimumNumberOfCalls: 10
+        waitDurationInOpenState: 10s
+        failureRateThreshold: 50
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowSize: 100
+        sliding-window-type: time_based
+
+application:
+  security:
+    jwt:
+      ttlRememberMe: 2592000000
+      ttl: 600000
+      secretKey: DSHTzrEshdcuxb7J+fBZqsHVenAVCKyt72laTZxEfFk=
+
+yandexMapsApi:
+  apiKey: 7ffff1e0-b2fc-4cfa-ac3c-18a27f1c71b5
+  url: https://geocode-maps.yandex.ru/1.x/
